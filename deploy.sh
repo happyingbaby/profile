@@ -9,7 +9,7 @@ REMOTE_ROOT="/www/wwwroot/www.fdeline.com"
 LOCAL_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # 需要上传的文件/目录（保持站点最小集，不含文档与脚本）
-FILES=(index.html 404.html sitemap.xml assets blog)
+FILES=(index.html 404.html sitemap.xml site.webmanifest assets blog)
 
 set -e
 echo ">> 上传 $LOCAL_DIR -> $SSH_HOST:$REMOTE_ROOT"

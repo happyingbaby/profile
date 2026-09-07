@@ -1,0 +1,14 @@
+{
+  "name": "James 个人主站",
+  "short_name": "James",
+  "description": "James 的个人主站：14 年 PHP/全栈工程师，分享技术笔记与项目作品。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#F17B7B",
+  "icons": [
+    { "src": "/assets/img/android-chrome-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/img/android-chrome-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
