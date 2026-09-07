@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技术博客 | James · 个人主站</title>
+  <meta name="description" content="James的技术学习与实践笔记：PHP 到 Go、宝塔部署、AI 漫剧工作流等。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="brand">James<span>.</span>dev</div>
+    <nav class="nav">
+      <a href="../index.html#about">关于</a>
+      <a href="../index.html#skills">技能</a>
+      <a href="../index.html#projects">项目</a>
+      <a href="../blog/index.html">博客</a>
+      <a href="../index.html#contact">联系</a>
+    </nav>
+    <button class="nav-toggle" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">技术博客</h2>
+    <p class="section-sub">学习与实践中的真实笔记。静态文章，无评论区。</p>
+    <div class="blog-list">
+      <a class="blog-item" href="php-to-go.html">
+        <div>
+          <h3>从 PHP 到 Go：一名后端工程师的学习笔记</h3>
+          <p>用 PHP 的工程直觉理解 Go 的并发与类型系统，降低上手成本。</p>
+        </div>
+        <span class="blog-date">2026-09</span>
+      </a>
+      <a class="blog-item" href="baota-deploy.html">
+        <div>
+          <h3>宝塔面板部署静态站点的踩坑记录</h3>
+          <p>域名解析、网站根目录、SSL 与强制 HTTPS 的一线实操要点。</p>
+        </div>
+        <span class="blog-date">2026-09</span>
+      </a>
+      <a class="blog-item" href="ai-drama-workflow.html">
+        <div>
+          <h3>AI 漫剧工作流：从分镜到视频变体</h3>
+          <p>即梦 + Seedance 2.0 下，如何把剧本拆成可生成的工程化分镜。</p>
+        </div>
+        <span class="blog-date">2026-09</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="beian">
+      <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">浙ICP备2026071350号-1</a>
+      <!-- 公安备案通过后粘贴平台 HTML 代码 -->
+    </div>
+    <div>© <span id="year"></span> James. 保留所有权利.</div>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

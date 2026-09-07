@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宝塔面板部署静态站点的踩坑记录 | James</title>
+  <meta name="description" content="域名解析、网站根目录、SSL 与强制 HTTPS 的实操要点。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <div class="brand">James<span>.</span>dev</div>
+    <nav class="nav">
+      <a href="../index.html#about">关于</a>
+      <a href="../index.html#skills">技能</a>
+      <a href="../index.html#projects">项目</a>
+      <a href="../blog/index.html">博客</a>
+      <a href="../index.html#contact">联系</a>
+    </nav>
+    <button class="nav-toggle" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<article class="article">
+  <div class="container">
+    <a class="back-link" href="../blog/index.html">← 返回博客列表</a>
+    <h1>宝塔面板部署静态站点的踩坑记录</h1>
+    <div class="meta">2026-09 · 运维 / 部署</div>
+
+    <p>这个个人主站是纯静态页面，部署到已有的宝塔/CentOS 服务器上。下面是几个容易忽略、但直接影响访问与备案的点。</p>
+
+    <h2>一、网站根目录要对</h2>
+    <p>宝塔里每个站点有独立根目录（通常 <code>/www/wwwroot/你的域名/</code>）。把 <code>index.html</code> 等文件放到根目录，而不是上层，否则访问域名会拿到目录列表或 404。</p>
+
+    <h2>二、ICP 备案与解析要一致</h2>
+    <p>域名能访问的前提是 DNS 的 A 记录指向服务器公网 IP，且该 IP 的接入商与 ICP 备案一致。上线前先 <code>ping 域名</code> 确认解析到位，再去做公安备案填报（IP、接入商、域名商都要和这里一致）。</p>
+
+    <h2>三、SSL 与强制 HTTPS</h2>
+    <ul>
+      <li>宝塔「SSL」里一键申请 Let's Encrypt 免费证书。</li>
+      <li>开启「强制 HTTPS」，避免用户用 http 访问出现备案号/内容不一致。</li>
+      <li>证书到期前宝塔可自动续签，但建议留意通知。</li>
+    </ul>
+
+    <h2>四、备案号要挂且能点</h2>
+    <p>ICP 备案号放在页脚，并链接到 <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">工信部备案系统</a>；公安备案通过后，把平台给的 HTML 代码（含图标）也放到页脚。两者都要真实可访问，审核人员会点。</p>
+
+    <h2>五、上传方式</h2>
+    <pre><code># 本地构建好后，用 scp 传整个目录到服务器根目录
+scp -r ./个人主站/* user@服务器IP:/www/wwwroot/你的域名/</code></pre>
+    <p>也可用宝塔文件管理器直接拖拽上传，适合小改动。改完清一下浏览器缓存再看效果。</p>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="beian">
+      <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">浙ICP备2026071350号-1</a>
+    </div>
+    <div>© <span id="year"></span> James. 保留所有权利.</div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

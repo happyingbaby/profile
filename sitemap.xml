@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 部署后请把下方域名替换为你真实的已备案域名 -->
+  <url><loc>https://www.fdeline.com/</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.fdeline.com/blog/</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.fdeline.com/blog/php-to-go.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.fdeline.com/blog/baota-deploy.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.fdeline.com/blog/ai-drama-workflow.html</loc><changefreq>monthly</changefreq></url>
+</urlset>

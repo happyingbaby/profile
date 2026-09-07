@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 漫剧工作流：从分镜到视频变体 | James</title>
+  <meta name="description" content="即梦 + Seedance 2.0 下，把剧本拆成可生成的工程化分镜。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <div class="brand">James<span>.</span>dev</div>
+    <nav class="nav">
+      <a href="../index.html#about">关于</a>
+      <a href="../index.html#skills">技能</a>
+      <a href="../index.html#projects">项目</a>
+      <a href="../blog/index.html">博客</a>
+      <a href="../index.html#contact">联系</a>
+    </nav>
+    <button class="nav-toggle" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<article class="article">
+  <div class="container">
+    <a class="back-link" href="../blog/index.html">← 返回博客列表</a>
+    <h1>AI 漫剧工作流：从分镜到视频变体</h1>
+    <div class="meta">2026-09 · AI 应用 / 漫剧</div>
+
+    <p>《磐石之判》是基于《民数记》20 章米利巴故事做的 AI 漫剧项目。目标不是一次性出片，而是建立一套「可复用、可扩展」的生成工作流。核心思路是把创作拆成四个可工程化的阶段。</p>
+
+    <h2>一、角色设计（Role Prompt）</h2>
+    <p>先固定角色外观与时代特征（青铜时代、闪米特人背景），生成统一风格的角色设定图。UE5 三维写实风作为统一基调，避免后续镜头里人物「变脸」。</p>
+
+    <h2>二、分镜解析（Storyboard）</h2>
+    <p>把剧本按镜头拆解：景别、机位、动作、台词、时长。每个分镜写成一段独立的图像/视频提示词，便于分别生成与调试。这一步最像「后端把需求拆成接口契约」。</p>
+
+    <h2>三、合并导出 .md 工程文件</h2>
+    <p>把所有分镜的提示词汇总到一个 Markdown 工程文件，作为单一事实来源（single source of truth），方便版本管理与复现。</p>
+
+    <h2>四、扩展变体（Variants）</h2>
+    <p>基于工程文件做变体：换镜头语言、换情绪、换运镜，生成多版候选再挑优。即梦 AI（Jimeng）+ Seedance 2.0 负责图像与视频生成。</p>
+    <pre><code>角色设定 → 分镜提示词 → 合并 .md → 扩展变体
+   ↑_________________________________↓
+           (闭环迭代，统一风格)</code></pre>
+
+    <h2>小结</h2>
+    <p>把「创作」当「工程」管，是 AI 内容能稳定产出的关键：先有规范，再批量生成，最后挑优。下一步会沉淀成可复用的 slash-command 工作流。</p>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="beian">
+      <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">浙ICP备2026071350号-1</a>
+    </div>
+    <div>© <span id="year"></span> James. 保留所有权利.</div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

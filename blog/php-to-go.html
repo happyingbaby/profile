@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>从 PHP 到 Go：一名后端工程师的学习笔记 | James</title>
+  <meta name="description" content="用 PHP 的工程直觉理解 Go 的并发与类型系统。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <div class="brand">James<span>.</span>dev</div>
+    <nav class="nav">
+      <a href="../index.html#about">关于</a>
+      <a href="../index.html#skills">技能</a>
+      <a href="../index.html#projects">项目</a>
+      <a href="../blog/index.html">博客</a>
+      <a href="../index.html#contact">联系</a>
+    </nav>
+    <button class="nav-toggle" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<article class="article">
+  <div class="container">
+    <a class="back-link" href="../blog/index.html">← 返回博客列表</a>
+    <h1>从 PHP 到 Go：一名后端工程师的学习笔记</h1>
+    <div class="meta">2026-09 · 全栈 / Go 学习</div>
+
+    <p>做了十四年 PHP，第一次认真学 Go 时最大的冲击不是语法，而是「心智模型」的差异。本文用 PHP 工程师的视角，记录几个最容易被卡住的点，以及怎么用已有经验去类比。</p>
+
+    <h2>一、请求模型：从「每请求一进程」到「常驻 + 协程」</h2>
+    <p>PHP-FPM 下，每个请求都是独立的进程生命周期，变量用完即弃，几乎不用操心内存。Go 是常驻进程，用 <code>goroutine</code> 处理并发。类比理解：PHP 像「来一个客人开一间店」，Go 像「一家店同时招呼很多客人」，你需要自己管理共享资源。</p>
+    <pre><code>// Go：并发跑两个任务
+go func() {
+    // 像 PHP 里 fire-and-forget，但要小心共享变量
+}()</code></pre>
+
+    <h2>二、类型系统：把「运行时报错」提前到「编译时」</h2>
+    <p>PHP 是弱类型（即便 8.x 有类型声明也较松），Go 是强静态类型。刚开始会觉得啰嗦，但换来的是重构安全。把接口当「契约」看，就和你写 PHP 的接口文档/OpenAPI 是一个目的。</p>
+
+    <h2>三、错误处理：没有 try/catch，只有返回值</h2>
+    <p>Go 把 error 当作普通返回值。对应 PHP 里你习惯用异常的地方，Go 更偏向「显式判断」。这逼你把边界情况写清楚，反而减少线上事故。</p>
+    <pre><code>f, err := os.Open("x.txt")
+if err != nil {
+    // 相当于 PHP 的 catch，但必须显式写
+    return err
+}</code></pre>
+
+    <h2>四、给 PHP 同学的上手建议</h2>
+    <ul>
+      <li>先写 CLI 工具，绕开 Web 框架，专注语言本身。</li>
+      <li>用 <code>gin</code> 之类轻框架类比 Laravel 路由，降低陌生感。</li>
+      <li>刻意练习「并发安全」：任何被多个 goroutine 读写的变量，想清楚要不要加锁或用 channel。</li>
+      <li>把 Composer 包管理的心智迁移到 <code>go mod</code>。</li>
+    </ul>
+    <p>结论：Go 不替代 PHP，而是补上 PHP 在高并发、长连接、CLI 服务化上的短板。两者并用，是一个务实的后端组合。</p>
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="beian">
+      <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">浙ICP备2026071350号-1</a>
+    </div>
+    <div>© <span id="year"></span> James. 保留所有权利.</div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
